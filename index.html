@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<title>PANADERÍA LA ESPIGA</title>
+<style>
+  body{ font-family: arial; margin:0; background:#FFF8EC; }
+  header{ background:#F9E79F ; display:flex; align-items:center; justify-content:space-between; padding:10px 20px; }
+  header h1{ font-family: fantasy; font-size:50px; color:#7A2E00; margin:0; }
+  header p{ margin:0; font-size:18px; }
+  .franja{ background:#7A2E00; height:30px; }
+  main{ display:flex; gap:20px; padding:20px; }
+  aside{ width:220px; display:flex; flex-direction:column; gap:10px; }
+  aside a{ background:white; border:2px solid #7A2E00; border-radius:10px; padding:12px; text-align:center; text-decoration:none; color:#7A2E00; font-weight:bold; }
+  .horario{ background:white; border:2px solid #7A2E00; border-radius:10px; padding:12px; text-align:center; }
+  .horario h3{ margin:0; color:#7A2E00; }
+  section{ flex:1; background:white; border-radius:15px; padding:20px; box-shadow:0 4px 10px rgba(0,0,0,0.2); }
+  .carrusel{ width:100%; height:450px; overflow:hidden; border-radius:15px; }
+  .slide{ display:flex; width:400%; height:100%; animation: desl 15s infinite ease-in-out; }
+  .slide img{ width:25%; height:100%; object-fit:cover; }
+  @keyframes desl{
+    0%{ transform: translateX(0); }
+    25%{ transform: translateX(-25%); }
+    50%{ transform: translateX(-50%); }
+    75%{ transform: translateX(-75%); }
+    100%{ transform: translateX(0); }
+  }
+  .juegos{ display:flex; gap:15px; margin-top:15px; }
+  
+  .juego{ flex:1; text-align:center; border:2px solid #7A2E00; border-radius:15px; padding:15px; background:#FFF8EC; font-family: serif;}
+  .juego h3{ color:#7A2E00; margin-top:0; }
+  .juego input{ width:60px; height:30px; text-align:center; font-size:14px; margin:3px; }
+  .juego button{ width:90%; height:35px; background:#7A2E00; color:white; border-radius:10px; font-size:14px; cursor:pointer; margin-top:5px; }
+  .juego .resultado{ font-weight:bold; color:#7A2E00; margin-top:8px; min-height:40px; }
+  footer{ background:#7A2E00; color:white; text-align:center; padding:15px; margin-top:20px; }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="img\icono.png" width="70" alt="logo pan">
+  <div style="text-align:center;">
+    <h1>PANADERÍA "LA ESPIGA"</h1>
+    <p>Pan calientito, como en casa desde 1975</p>
+  </div>
+  <img src="img/sopmbrero.png" width="60" alt="batidor">
+</header>
+
+<div class="franja"></div>
+
+<main>
+  <aside>
+    <a href="menuyael.htm">Menú</a>
+    <a href="codigo.html">Promoción</a>
+    <a href="final.html">Historia</a>
+    <a href="ubicacion.html">Ubicación</a>
+    <a href="final.html">Contacto</a>
+    <br>
+    <div class="horario">
+      <h3>Horario</h3>
+      <p><b>Lunes a Domingo</b><br>7:00 am - 9:00 pm</p>
+      <p><b>Pan recién horneado:</b><br>8:00 am y 5:00 pm</p>
+      <p><b>¡Te esperamos!</b></p>
+    </div>
+  </aside>
+
+  <section>
+    <center>
+      <h2>¡Prueba nuestros panes de temporada!</h2>
+  </center>
+    <div class="carrusel">
+      <div class="slide">
+        <img src="img/rosa.png" alt="Pan 1">
+        <img src="img/pand.png" alt="Pan 2">
+        <img src="img/cabalaza.png" alt="Pan 3">
+        <img src="img/paneton (2).png" alt="Pan 4">
+      </div>
+    </div>
+
+    <h2>Mini Juegos - Diviértete en La Espiga</h2>
+    <p>¡Juega un rato antes de pedir tu pan!</p>
+
+    <div class="juegos">
+      <div class="juego">
+        <h3>Mini Juego 1<br>¿Qué pan eres?</h3>
+        <p>Escribe tu cumpleaños:</p>
+        Día: <input type="number" id="dia" placeholder="Ingresa un día"><br>
+        Mes: <input type="number" id="mes" placeholder="Ingresa una edad"><br>
+        <button id="btn-pan">Descubrir mi pan</button>
+        <p class="resultado" id="res-pan"></p>
+      </div>
+
+      <div class="juego">
+        <h3>Mini Juego 2<br>Trivia de La Espiga</h3>
+        <p>¿Cuál es el pan más vendido de La Espiga?</p>
+        <button id="btn-trivia-concha">La Concha</button>
+        <button id="btn-trivia-bolillo">El Bolillo</button>
+        <button id="btn-trivia-dona">La Dona</button>
+        <p class="resultado" id="res-trivia"></p>
+      </div>
+
+      <div class="juego">
+        <h3>Mini Juego 3<br>¿Team Dulce o Team Salado?</h3>
+        <p>Elige tu equipo:</p>
+        <button id="btn-dulce">Team Dulce </button>
+        <button id="btn-salado">Team Salado </button>
+        <p class="resultado" id="res-team"></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 Panadería La Espiga - Todos los derechos reservados</p>
+  
+</footer>
+
+<script>
+
+  document.getElementById("btn-pan").addEventListener("click", () => {
+    const dia = Number(document.getElementById("dia").value);
+    const mes = Number(document.getElementById("mes").value);
+    let pan = "";
+
+    switch(mes){
+      case 1:
+        if (dia < 20) {
+          pan = "Concha - Dulce y clásica";
+        } else {
+          pan = "Cuerno - Con carácter";
+        }
+        break;
+      case 2:
+        if (dia < 19) {
+          pan = "Dona - Divertida";
+        } else {
+          pan = "Pan de Muerto - Especial";
+        }
+        break;
+      case 3:
+        if (dia < 21) {
+          pan = "Bolillo - Confiable";
+        } else {
+          pan = "Oreja - Con estilo";
+        }
+        break;
+      case 4:
+        if (dia < 20) {
+          pan = "Mantecada - Tierna";
+        } else {
+          pan = "Beso - Romántica";
+        }
+        break;
+      case 5:
+        if (dia < 21) {
+          pan = "Cochito - Con personalidad";
+        } else {
+          pan = "Pastel - La estrella";
+        }
+        break;
+      case 6:
+        if (dia < 21) {
+          pan = "Telera - Tranquila";
+        } else {
+          pan = "Polvorón - Risueña";
+        }
+        break;
+      case 7:
+        if (dia < 23) {
+          pan = "Concha de Chocolate - La favorita";
+        } else {
+          pan = "Cuernito Relleno - Con sorpresa";
+        }
+        break;
+      case 8:
+        if (dia < 23) {
+          pan = "Pan de Elote - Diferente";
+        } else {
+          pan = "Baguette - Elegante";
+        }
+        break;
+      case 9:
+        if (dia < 23) {
+          pan = "Galleta - Adictiva";
+        } else {
+          pan = "Empanada - Con secreto";
+        }
+        break;
+      case 10:
+        if (dia < 23) {
+          pan = "Rosca - Compartida";
+        } else {
+          pan = "Churro - Con chispa";
+        }
+        break;
+      case 11:
+        if (dia < 22) {
+          pan = "Pan de Muerto - Misteriosa";
+        } else {
+          pan = "Concha de Vainilla - Buen corazón";
+        }
+        break;
+      case 12:
+        if (dia < 22) {
+          pan = "Buñuelo - Fiestero";
+        } else {
+          pan = "Rosca de Reyes - Une a la familia";
+        }
+        break;
+      default:
+        pan = "Escribe un mes del 1 al 12";
+    }
+
+    document.getElementById("res-pan").textContent = "¡Eres " + pan + "!";
+  });
+
+  
+  document.getElementById("btn-trivia-concha").addEventListener("click", () => {
+    document.getElementById("res-trivia").textContent = "¡Correcto! La Concha es la favorita de todos.";
+  });
+  document.getElementById("btn-trivia-bolillo").addEventListener("click", () => {
+    document.getElementById("res-trivia").textContent = "Casi... El Bolillo es rico, pero no es el más vendido. Intenta otra vez.";
+  });
+  document.getElementById("btn-trivia-dona").addEventListener("click", () => {
+    document.getElementById("res-trivia").textContent = "Casi... La Dona es de las favoritas de los niños, pero no es la #1. Intenta otra vez.";
+  });
+
+  
+  document.getElementById("btn-dulce").addEventListener("click", () => {
+    document.getElementById("res-team").textContent = "¡Eres Team Dulce! Te recomendamos: Concha, Dona y Pastel.";
+  });
+  document.getElementById("btn-salado").addEventListener("click", () => {
+    document.getElementById("res-team").textContent = "¡Eres Team Salado! Te recomendamos: Bolillo, Telera y Baguette.";
+  });
+</script>
+
+</body>
+</html>
